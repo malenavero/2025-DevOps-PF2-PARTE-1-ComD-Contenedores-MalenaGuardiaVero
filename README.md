@@ -268,6 +268,31 @@ Verificamos funcionamiento en: [http://localhost:3000/alumnos](http://localhost:
 
 ---
 
+### 19. Compartir imagenes en DockerHub
+
+En este punto me di cuenta que tenia varias imagenes en docker y con nombres poco consistentes por lo que empecé removiendo todas las imagenes:
+
+```bash
+docker rmi -f $(docker images -aq)
+```
+
+Luego recreamos la imagen pero ya asignandole un tag y confirmamos que todo este levantado correctamente:
+```bash
+docker build -t peridockerr/pf2-parte1-node:latest ./app-node
+docker-compose up -d --build
+docker ps
+```
+
+Como ya tenia un usuario en DockerHub simplemente me loguee y pushee la imágen:
+```bash
+docker login
+docker push peridockerr/pf2-parte1-node:latest
+```
+
+Verificamos funcionamiento en: [http://localhost:3000/alumnos](http://localhost:3000/alumnos)
+
+---
+
 ## Desafíos enfrentados
 
 - **Versión antigua de Docker Compose:** Fue necesario actualizar para soportar opciones modernas.
